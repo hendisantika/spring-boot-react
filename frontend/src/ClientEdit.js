@@ -16,6 +16,13 @@ class ClientEdit extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    async componentDidMount() {
+        if (this.props.match.params.id !== 'new') {
+            const client = await (await fetch(`/clients/${this.props.match.params.id}`)).json();
+            this.setState({item: client});
+        }
+    }
 }
 
 export default withRouter(ClientEdit);
