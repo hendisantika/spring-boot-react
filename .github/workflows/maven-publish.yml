@@ -32,7 +32,8 @@ jobs:
 #      env:
 #        GITHUB_TOKEN: ${{ github.token }}
     - run: mvn clean package -DskipTests
-    - run: mkdir staging && mv target/hendi-workload-sim.jar target/hendi-workload-sim-${{ env.build-number }}.jar && cp target/*.jar staging
+      #    - run: mkdir staging && mv target/hendi-workload-sim.jar target/hendi-workload-sim-${{ env.build-number }}.jar && cp target/*.jar staging
+    - run: cp target/*.jar staging
     - uses: actions/upload-artifact@v3
       with:
         name: jar-file
