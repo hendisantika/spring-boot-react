@@ -4,6 +4,7 @@ import id.my.hendisantika.springbootreact.entity.Client;
 import id.my.hendisantika.springbootreact.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,5 +30,10 @@ public class ClientsController {
     @GetMapping
     public List<Client> getClients() {
         return clientRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Client getClient(@PathVariable Long id) {
+        return clientRepository.findById(id).orElseThrow(RuntimeException::new);
     }
 }
