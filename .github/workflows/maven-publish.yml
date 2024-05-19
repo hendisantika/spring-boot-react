@@ -31,13 +31,21 @@ jobs:
 #      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
 #      env:
 #        GITHUB_TOKEN: ${{ github.token }}
-    - name: Copy Jar file
-      run: mv target/$(ls target) app.jar
-
-    - uses: actions/upload-artifact@master
+    - run: mvn clean package -DskipTests
+    - run: mkdir staging && mv target/hendi-workload-sim.jar target/hendi-workload-sim-${{ env.build-number }}.jar && cp target/*.jar staging
+    - uses: actions/upload-artifact@v3
       with:
         name: jar-file
         path: app.jar
+        retention-days: 1
+
+    - name: Copy Jar file
+      run: mv target/*.jar
+
+  #    - uses: actions/upload-artifact@master
+  #      with:
+  #        name: jar-file
+  #        path: app.jar
 
   build-image:
     runs-on: ubuntu-latest
