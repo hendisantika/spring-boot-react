@@ -9,7 +9,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -32,3 +31,38 @@ jobs:
 #      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
 #      env:
 #        GITHUB_TOKEN: ${{ github.token }}
+
+  build-image:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@master
+        with:
+          name: jar-file
+          path: app.jar
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set env
+        run: echo "DATE=$(date +%s)" >> $GITHUB_ENV
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: hendisantika/client-app:${{ env.DATE }}
