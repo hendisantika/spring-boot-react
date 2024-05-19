@@ -9,8 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>id.my.hendisantika</groupId>
-    <artifactId>spring-boot-react</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>backend</artifactId>
+    <version>0.0.1</version>
     <name>spring-boot-react</name>
     <description>spring-boot-react</description>
     <properties>
