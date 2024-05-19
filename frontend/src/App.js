@@ -1,18 +1,11 @@
+import React, {Component} from 'react';
 import './App.css';
-import {Component} from "react";
-import {Router} from "react-router-dom";
+import Home from './Home';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import ClientList from './ClientList';
+import ClientEdit from "./ClientEdit";
 
 class App extends Component {
-    state = {
-        clients: []
-    };
-
-    async componentDidMount() {
-        const response = await fetch('/clients');
-        const body = await response.json();
-        this.setState({clients: body});
-    }
-
     render() {
         return (
             <Router>
@@ -25,4 +18,5 @@ class App extends Component {
         )
     }
 }
+
 export default App;
