@@ -1,7 +1,7 @@
-import {Component} from 'react';
-import AppNavbar from "./AppNavbar";
-import {Button, ButtonGroup, Container, Table} from "reactstrap";
-import {Link} from "react-router-dom";
+import React, {Component} from 'react';
+import {Button, ButtonGroup, Container, Table} from 'reactstrap';
+import AppNavbar from './AppNavbar';
+import {Link} from 'react-router-dom';
 
 class ClientList extends Component {
 
@@ -31,11 +31,7 @@ class ClientList extends Component {
     }
 
     render() {
-        const {clients, isLoading} = this.state;
-
-        if (isLoading) {
-            return <p>Loading...</p>;
-        }
+        const {clients} = this.state;
 
         const clientList = clients.map(client => {
             return <tr key={client.id}>
