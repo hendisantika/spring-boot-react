@@ -83,4 +83,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: hendisantika/client-app:${{ env.DATE }}
+          tags: hendisantika/backend-app:${{ env.DATE }}
