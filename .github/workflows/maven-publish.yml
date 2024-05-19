@@ -34,7 +34,7 @@ jobs:
     - run: mvn clean package -DskipTests
       #    - run: mkdir staging && mv target/hendi-workload-sim.jar target/hendi-workload-sim-${{ env.build-number }}.jar && cp target/*.jar staging
     - name: Copy Jar file
-    - run: cp target/*.jar app.jar
+      run: cp target/*.jar app.jar
 
     - uses: actions/upload-artifact@v3
       with:
