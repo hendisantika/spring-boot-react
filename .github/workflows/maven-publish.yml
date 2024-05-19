@@ -40,8 +40,8 @@ jobs:
         path: app.jar
         retention-days: 1
 
-    - name: Copy Jar file
-      run: mv target/*.jar
+  #    - name: Copy Jar file
+  #      run: mv target/*.jar
 
   #    - uses: actions/upload-artifact@master
   #      with:
