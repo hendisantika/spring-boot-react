@@ -23,6 +23,15 @@ class ClientEdit extends Component {
             this.setState({item: client});
         }
     }
+
+    handleChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        let item = {...this.state.item};
+        item[name] = value;
+        this.setState({item});
+    }
 }
 
 export default withRouter(ClientEdit);
