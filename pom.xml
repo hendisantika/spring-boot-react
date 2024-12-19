@@ -17,7 +17,7 @@
         <java.version>21</java.version>
         <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
         <node.version>v20.0.0</node.version>
-        <pnpm.version>8.6.0</pnpm.version>
+        <pnpm.version>9.15.0</pnpm.version>
         <javafaker.version>1.0.2</javafaker.version>
     </properties>
     <dependencies>
