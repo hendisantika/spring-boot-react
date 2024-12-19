@@ -49,6 +49,24 @@ jobs:
   #      with:
   #        name: jar-file
   #        path: app.jar
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install pnpm
+      run: npm install -g pnpm
+
+    - name: Install dependencies and build React app
+      run: |
+        cd react-app
+        pnpm install
+        pnpm run build
+
+    - name: Run React app tests
+      run: |
+        cd react-app
+        pnpm test -- --watchAll=false
 
   build-image:
     runs-on: ubuntu-latest
