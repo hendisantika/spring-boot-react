@@ -19,7 +19,7 @@
         <frontend-src-dir>${project.basedir}/frontend</frontend-src-dir>
         <node.version>v20.0.0</node.version>
         <pnpm.version>9.15.0</pnpm.version>
-        <yarn.version>1.22.19</yarn.version>
+        <yarn.version>v1.22.19</yarn.version>
         <javafaker.version>1.0.2</javafaker.version>
     </properties>
     <dependencies>
