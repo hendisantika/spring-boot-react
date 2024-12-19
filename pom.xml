@@ -15,9 +15,11 @@
     <description>spring-boot-react</description>
     <properties>
         <java.version>21</java.version>
-        <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
+        <frontend-maven-plugin.version>1.15.0</frontend-maven-plugin.version>
+        <frontend-src-dir>${project.basedir}/frontend</frontend-src-dir>
         <node.version>v20.0.0</node.version>
         <pnpm.version>9.15.0</pnpm.version>
+        <yarn.version>v1.16.0</yarn.version>
         <javafaker.version>1.0.2</javafaker.version>
     </properties>
     <dependencies>
@@ -123,52 +125,75 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>${frontend-maven-plugin.version}</version>
                 <configuration>
-                    <workingDirectory>frontend</workingDirectory>
+                    <workingDirectory>/frontend</workingDirectory>
+                    <yarnVersion>${yarn.version}</yarnVersion>
+                    <workingDirectory>${frontend-src-dir}</workingDirectory>
+                    <installDirectory>${project.build.directory}</installDirectory>
                 </configuration>
                 <executions>
                     <execution>
                         <id>install node and pnpm</id>
                         <goals>
-                            <goal>install-node-and-npm</goal>
+                            <!--                            <goal>install-node-and-npm</goal>-->
+                            <goal>install-node-and-yarn</goal>
                         </goals>
                         <configuration>
                             <nodeVersion>${node.version}</nodeVersion>
-                            <npmVersion>${pnpm.version}</npmVersion>
-                            <npmDownloadRoot>https://github.com/pnpm/pnpm/releases/download/v${pnpm.version}
-                            </npmDownloadRoot>
+                            <!--                            <npmVersion>${pnpm.version}</npmVersion>-->
+                            <!--                            <npmDownloadRoot>https://github.com/pnpm/pnpm/releases/download/v${pnpm.version}/pnpm-${pnpm.version}.tgz</npmDownloadRoot>-->
                         </configuration>
                     </execution>
+                    <!--                    <execution>-->
+                    <!--                        <id>pnpm install</id>-->
+                    <!--                        <goals>-->
+                    <!--                            <goal>npm</goal>-->
+                    <!--                        </goals>-->
+                    <!--                        <phase>generate-resources</phase>-->
+                    <!--                        <configuration>-->
+                    <!--                            <arguments>install</arguments>-->
+                    <!--                        </configuration>-->
+                    <!--                    </execution>-->
+                    <!--                    <execution>-->
+                    <!--                        <id>pnpm test</id>-->
+                    <!--                        <goals>-->
+                    <!--                            <goal>npm</goal>-->
+                    <!--                        </goals>-->
+                    <!--                        <phase>test</phase>-->
+                    <!--                        <configuration>-->
+                    <!--                            <arguments>test</arguments>-->
+                    <!--                            <environmentVariables>-->
+                    <!--                                <CI>true</CI>-->
+                    <!--                            </environmentVariables>-->
+                    <!--                        </configuration>-->
+                    <!--                    </execution>-->
+                    <!--                    <execution>-->
+                    <!--                        <id>pnpm build</id>-->
+                    <!--                        <goals>-->
+                    <!--                            <goal>npm</goal>-->
+                    <!--                        </goals>-->
+                    <!--                        <phase>compile</phase>-->
+                    <!--                        <configuration>-->
+                    <!--                            <arguments>run build</arguments>-->
+                    <!--                        </configuration>-->
+                    <!--                    </execution>-->
                     <execution>
-                        <id>pnpm install</id>
+                        <id>yarn-install</id>
                         <goals>
-                            <goal>npm</goal>
+                            <goal>yarn</goal>
                         </goals>
-                        <phase>generate-resources</phase>
                         <configuration>
                             <arguments>install</arguments>
                         </configuration>
                     </execution>
+
                     <execution>
-                        <id>pnpm test</id>
+                        <id>build-frontend</id>
                         <goals>
-                            <goal>npm</goal>
+                            <goal>yarn</goal>
                         </goals>
-                        <phase>test</phase>
+                        <phase>prepare-package</phase>
                         <configuration>
-                            <arguments>test</arguments>
-                            <environmentVariables>
-                                <CI>true</CI>
-                            </environmentVariables>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>pnpm build</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <phase>compile</phase>
-                        <configuration>
-                            <arguments>run build</arguments>
+                            <arguments>build</arguments>
                         </configuration>
                     </execution>
                 </executions>
