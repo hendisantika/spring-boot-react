@@ -19,7 +19,7 @@
         <frontend-src-dir>${project.basedir}/frontend</frontend-src-dir>
         <node.version>v20.0.0</node.version>
         <pnpm.version>9.15.0</pnpm.version>
-        <yarn.version>v1.16.0</yarn.version>
+        <yarn.version>1.22.19</yarn.version>
         <javafaker.version>1.0.2</javafaker.version>
     </properties>
     <dependencies>
@@ -132,13 +132,15 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>install node and pnpm</id>
+                        <!--                        <id>install node and pnpm</id>-->
+                        <id>install node and yarn</id>
                         <goals>
                             <!--                            <goal>install-node-and-npm</goal>-->
                             <goal>install-node-and-yarn</goal>
                         </goals>
                         <configuration>
                             <nodeVersion>${node.version}</nodeVersion>
+                            <yarnVersion>${yarn.version}</yarnVersion>
                             <!--                            <npmVersion>${pnpm.version}</npmVersion>-->
                             <!--                            <npmDownloadRoot>https://github.com/pnpm/pnpm/releases/download/v${pnpm.version}/pnpm-${pnpm.version}.tgz</npmDownloadRoot>-->
                         </configuration>
@@ -185,7 +187,16 @@
                             <arguments>install</arguments>
                         </configuration>
                     </execution>
-
+                    <execution>
+                        <id>yarn build</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <arguments>build</arguments>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>build-frontend</id>
                         <goals>
