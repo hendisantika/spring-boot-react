@@ -76,7 +76,7 @@ jobs:
 
       - uses: actions/checkout@v6
 
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: jar-file
           path: backend-0.0.1.jar
