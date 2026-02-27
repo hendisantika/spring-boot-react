@@ -36,7 +36,7 @@ jobs:
     - name: Copy Jar file
       run: cp target/*.jar app.jar
 
-    - uses: actions/upload-artifact@v6
+    - uses: actions/upload-artifact@v7
       with:
         name: jar-file
         path: target
